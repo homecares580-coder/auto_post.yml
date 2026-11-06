@@ -1,0 +1,26 @@
+name: Islamic Auto Facebook Bot
+
+on:
+  schedule:
+    - cron: '0 2,8,13,18 * * *' # প্রতিদিন নির্দিষ্ট সময়ে অটোমেটিক চলবে
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Run bot script
+        run: |
+          python bot.py
